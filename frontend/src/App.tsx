@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <AppToolBar />
-      <Container maxWidth="md" sx={{ mt: 2 }}>
+      <Container maxWidth="lg" sx={{ mt: 2 }}>
         {user && (
           <Grid container sx={{ mb: 2 }}>
             <Grid item xs={2}>

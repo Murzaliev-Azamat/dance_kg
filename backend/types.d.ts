@@ -7,6 +7,18 @@ export interface Artist {
 
 export type ArtistWithoutId = Omit<Artist, "id">;
 
+export interface Course {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  format: string;
+  status: string;
+  image: string | null;
+}
+
+export type CourseWithoutId = Omit<Course, "id">;
+
 export interface AlbumMutation {
   artist: string;
   name: string;
