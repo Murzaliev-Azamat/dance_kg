@@ -12,6 +12,25 @@ export interface ArtistApi {
   info: string;
 }
 
+export interface Course {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  format: string;
+  status: string;
+  image: string;
+}
+
+export interface CourseApi {
+  title: string;
+  description: string;
+  price: string;
+  format: string;
+  status: string;
+  image: File | null;
+}
+
 export interface Album {
   _id: string;
   artist: {

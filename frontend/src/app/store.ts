@@ -7,14 +7,16 @@ import storage from 'redux-persist/lib/storage';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist/es/constants';
 import { usersReducer } from '../features/users/usersSlise';
 import { tracksHistoryReducer } from '../features/tracksHistory/tracksHistorySlice';
+import { coursesReducer } from '../features/courses/coursesSlice';
 
 const usersPersistConfig = {
-  key: 'shop:users',
+  key: 'dance_kg:users',
   storage,
   whitelist: ['user'],
 };
 
 const rootReducer = combineReducers({
+  courses: coursesReducer,
   artists: artistsReducer,
   albums: albumsReducer,
   tracks: tracksReducer,
