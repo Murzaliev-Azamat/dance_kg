@@ -2,9 +2,7 @@ import crypto from "crypto";
 import mongoose from "mongoose";
 import config from "./config";
 import User from "./models/User";
-import Artist from "./models/Artist";
-import Album from "./models/Album";
-import Track from "./models/Track";
+import Course from "./models/Course";
 
 const run = async () => {
   mongoose.set("strictQuery", false);
@@ -12,192 +10,134 @@ const run = async () => {
   const db = mongoose.connection;
 
   try {
-    await db.dropCollection("albums");
-    await db.dropCollection("artists");
-    await db.dropCollection("trackhistories");
-    await db.dropCollection("tracks");
+    await db.dropCollection("courses");
     await db.dropCollection("users");
   } catch (e) {
     console.log("Collections were not present, skipping drop...");
   }
 
-  const [eminem, madonna] = await Artist.create(
+  await Course.create(
     {
-      name: "Eminem",
-      image: "fixtures/eminem.jpg",
-      info: "Rap singer",
+      title: "Акробатический рок-н-ролл",
+      description:
+        "Акробатический рок-н-ролл – это танец, воспринимающийся как полноценный вид спорта. Он достаточно сложен в исполнении и требует хорошей физической формы.",
+      price: 3000,
+      format: "Онлайн",
+      status: "Новый",
+      image: "fixtures/Акробатический_рок-н-ролл.jpeg",
     },
     {
-      name: "Madonna",
-      image: "fixtures/madonna.jpg",
-      info: "Pop singer",
-    }
-  );
-
-  const [theEminemShow, encore, americanLife, trueBlue] = await Album.create(
-    {
-      name: "Encore",
-      year: 2004,
-      artist: eminem._id,
-      image: "fixtures/encore.jpg",
+      title: "Соло-латина",
+      description:
+        "Латина – это микс различных танцев, таких как бачата, сальса, мамбо, ча-ча-ча, румба и так далее. Обычно под латиной подразумевается парное исполнение, однако есть и такое направление, как соло-латина, где танцор выступает в одиночестве.",
+      price: 3000,
+      format: "Оффлайн",
+      status: "Идет набор",
+      image: "fixtures/Соло-латина.jpeg",
     },
     {
-      name: "The Eminem Show",
-      year: 2002,
-      artist: eminem._id,
-      image: "fixtures/the_eminem_show.jpg",
+      title: "Восточные танцы",
+      description:
+        "При упоминании восточных танцев обычно представляют роскошные полупрозрачные одежды, обильно украшенные бисером и стеклярусом; гибкие черноглазые женщины, подносы с рахат-лукумом и тяжелый аромат пряностей.",
+      price: 3000,
+      format: "Оффлайн",
+      status: "В процессе",
+      image: "fixtures/Восточные_танцы.jpeg",
     },
     {
-      name: "American Life",
-      year: 2003,
-      artist: madonna._id,
-      image: "fixtures/american_life.jpg",
+      title: "Contemporary",
+      description:
+        "Контемпорари — это интеллектуальный танец, который позволяет сбалансировать состояние тела, психики и души. Благодаря такой гармонии улучшается не только настроение, но и самочувствие.",
+      price: 3000,
+      format: "Оффлайн",
+      status: "В процессе",
+      image: "fixtures/Contemporary.jpeg",
     },
     {
-      name: "True Blue",
-      year: 1986,
-      artist: madonna._id,
-      image: "fixtures/true_blue.jpg",
-    }
-  );
-
-  await Track.create(
-    {
-      name: "White America",
-      time: "3:14",
-      album: theEminemShow._id,
-      trackNumber: 1,
-      linkToYoutube: "bi-8QeEm0HM",
+      title: "Джаз-модерн",
+      description:
+        "Этот танец стал своеобразной революцией, произошедшей на рубеже 19 и 20 веков. В Америке сценическая хореография стала стремительно отделяться от привычного искусства балета, искать новые пути становления.",
+      price: 3000,
+      format: "Оффлайн",
+      status: "В процессе",
+      image: "fixtures/Джаз-модерн.jpg",
     },
     {
-      name: "Business",
-      time: "3:15",
-      album: theEminemShow._id,
-      trackNumber: 3,
+      title: "Кизомба",
+      description:
+        "Кизомба – яркий, сочный социальный танец, родившийся из карнавала в Анголе в середине 20-го века. В его основу легли этнические ангольские танцы и национальные ритмы.",
+      price: 3000,
+      format: "Оффлайн",
+      status: "В процессе",
+      image: "fixtures/Кизомба.jpg",
     },
     {
-      name: "Soldier",
-      time: "2:18",
-      album: theEminemShow._id,
-      trackNumber: 2,
-      linkToYoutube: "HOCdIG3mq1U",
+      title: "Аргентинское танго",
+      description:
+        "Аргентинское танго – это квинтэссенция страсти. Мало найдется танцев, которые так же сближают партнеров, как этот. Уже аргентинское танго покоряет сердца танцоров, которые преданно и навсегда влюбляются в эти движения и эмоции, и зрителей, которым передается волна куража со сцены.",
+      price: 3000,
+      format: "Оффлайн",
+      status: "В процессе",
+      image: "fixtures/Аргентинское_танго.png",
     },
     {
-      name: "Say Goodbye Hollywood",
-      time: "3:22",
-      album: theEminemShow._id,
-      trackNumber: 4,
+      title: "Пасодобль",
+      description:
+        "Название пасодобль с испанского переводится как «двойной шаг», поскольку для этого танца характерно подчеркивание каждого второго шага. Интересно, что сначала его название было «Один испанский шаг», согласно ритму, когда шаги делаются на каждую музыкальную долю.",
+      price: 3000,
+      format: "Оффлайн",
+      status: "В процессе",
+      image: "fixtures/Пасодобль.jpeg",
     },
     {
-      name: "Without Me",
-      time: "3:25",
-      album: theEminemShow._id,
-      trackNumber: 5,
+      title: "Джайв",
+      description:
+        "Джайв — танец афроамериканского происхождения, появившийся в США в начале 1940-х. Джайв является разновидностью свинга с быстрыми и свободными движениями.",
+      price: 3000,
+      format: "Оффлайн",
+      status: "В процессе",
+      image: "fixtures/Джайв.jpeg",
     },
     {
-      name: "Evil Deeds",
-      time: "3:16",
-      album: encore._id,
-      trackNumber: 1,
+      title: "Ча-ча-ча",
+      description:
+        "Танцевальный стиль ча-ча-ча появился в середине ХХ века как результат музыкального эксперимента кубинского композитора Энрике Хоррина, сочинившего мелодию La enganadora, которая представляла собой нечто среднее между румбой и танцем мамбо.",
+      price: 3000,
+      format: "Оффлайн",
+      status: "В процессе",
+      image: "fixtures/Ча-ча-ча.jpeg",
     },
     {
-      name: "Mosh",
-      time: "3:15",
-      album: encore._id,
-      trackNumber: 4,
+      title: "Фокстрот",
+      description:
+        "Фокстрот – очень романтичный парный танец, входящий в европейскую спортивную бальную программу. Он отличается плавностью и мягкостью движений, их свободой и маневренностью. Увидев фокстрот однажды, в него нельзя не влюбиться.",
+      price: 3000,
+      format: "Оффлайн",
+      status: "В процессе",
+      image: "fixtures/Фокстрот.jpeg",
     },
     {
-      name: "Rain Man",
-      time: "3:11",
-      album: encore._id,
-      trackNumber: 3,
-    },
-    {
-      name: "Just Lose It",
-      time: "3:18",
-      album: encore._id,
-      trackNumber: 2,
-    },
-    {
-      name: "Mockingbird",
-      time: "3:40",
-      album: encore._id,
-      trackNumber: 5,
-    },
-    {
-      name: "Frozen",
-      time: "3:33",
-      album: americanLife._id,
-      trackNumber: 5,
-      linkToYoutube: "XS088Opj9o0",
-    },
-    {
-      name: "Hollywood",
-      time: "3:35",
-      album: americanLife._id,
-      trackNumber: 4,
-    },
-    {
-      name: "Love Profusion",
-      time: "3:39",
-      album: americanLife._id,
-      trackNumber: 3,
-    },
-    {
-      name: "Nothing Fails",
-      time: "3:05",
-      album: americanLife._id,
-      trackNumber: 2,
-    },
-    {
-      name: "Intervention",
-      time: "3:07",
-      album: americanLife._id,
-      trackNumber: 1,
-    },
-    {
-      name: "Open Your Heart",
-      time: "3:11",
-      album: trueBlue._id,
-      trackNumber: 4,
-    },
-    {
-      name: "White Heat",
-      time: "3:15",
-      album: trueBlue._id,
-      trackNumber: 3,
-    },
-    {
-      name: "Live to Tell",
-      time: "3:19",
-      album: trueBlue._id,
-      trackNumber: 5,
-    },
-    {
-      name: "Where’s the Party",
-      time: "3:58",
-      album: trueBlue._id,
-      trackNumber: 2,
-    },
-    {
-      name: "La Isla Bonita",
-      time: "3:47",
-      album: trueBlue._id,
-      trackNumber: 1,
+      title: "Вальс",
+      description:
+        "Вальс без сомнения можно назвать одним из самых популярных видов танцев. Его танцуют на выпускных и свадьбах, в маленьких клубах и огромных залах.",
+      price: 3000,
+      format: "Оффлайн",
+      status: "В процессе",
+      image: "fixtures/Вальс.jpeg",
     }
   );
 
   await User.create(
     {
-      username: "Azamat",
-      password: "12345",
-      displayName: "Aza",
+      username: "user",
+      password: "password",
+      displayName: "Azamat",
       token: crypto.randomUUID(),
     },
     {
-      username: "Adilet",
-      password: "333",
-      displayName: "Adik",
+      username: "admin",
+      password: "password",
+      displayName: "Adilet",
       token: crypto.randomUUID(),
       role: "admin",
     }
