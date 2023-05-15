@@ -17,6 +17,15 @@ coursesRouter.get("/", async (req, res, next) => {
   }
 });
 
+coursesRouter.get("/:id", async (req, res, next) => {
+  try {
+    const course = await Course.findOne({ _id: req.params.id });
+    return res.send(course);
+  } catch (e) {
+    return next(e);
+  }
+});
+
 coursesRouter.post(
   "/",
   auth,
@@ -47,28 +56,34 @@ coursesRouter.post(
   }
 );
 
-coursesRouter.patch("/:id", auth, permit("admin"), async (req, res, next) => {
-  try {
-    const course = await Course.findOne({ _id: req.params.id });
-    if (course) {
-      await Course.updateOne(
-        { _id: course._id },
-        {
-          title: req.body.title,
-          description: req.body.description,
-          price: req.body.price,
-          format: req.body.format,
-          status: req.body.status,
-          image: req.body.image,
-        }
-      );
-      const updatedCourse = await Course.findOne({ _id: course._id });
-      return res.send(updatedCourse);
+coursesRouter.patch(
+  "/:id",
+  auth,
+  permit("admin"),
+  imagesUpload.single("image"),
+  async (req, res, next) => {
+    try {
+      const course = await Course.findOne({ _id: req.params.id });
+      if (course) {
+        await Course.updateOne(
+          { _id: course._id },
+          {
+            title: req.body.title,
+            description: req.body.description,
+            price: req.body.price,
+            format: req.body.format,
+            status: req.body.status,
+            image: req.file ? req.file.filename : null,
+          }
+        );
+        const updatedCourse = await Course.findOne({ _id: course._id });
+        return res.send(updatedCourse);
+      }
+    } catch (e) {
+      return next(e);
     }
-  } catch (e) {
-    return next(e);
   }
-});
+);
 
 coursesRouter.delete("/:id", auth, permit("admin"), async (req, res, next) => {
   try {

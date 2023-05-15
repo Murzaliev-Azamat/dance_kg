@@ -7,6 +7,11 @@ export const fetchCourses = createAsyncThunk<Course[]>('courses/fetchAll', async
   return coursesResponse.data;
 });
 
+export const fetchOneCourse = createAsyncThunk<Course, string>('courses/fetchOne', async (id) => {
+  const courseResponse = await axiosApi.get<Course>('/courses/' + id);
+  return courseResponse.data;
+});
+
 export const addCourse = createAsyncThunk<void, CourseApi>('courses/addCourse', async (course) => {
   const formData = new FormData();
 
@@ -24,11 +29,22 @@ export const addCourse = createAsyncThunk<void, CourseApi>('courses/addCourse', 
 
 export interface CourseMutation {
   id: string;
-  course: Course;
+  course: CourseApi;
 }
 
 export const editCourse = createAsyncThunk<void, CourseMutation>('courses/editCourse', async (params) => {
-  await axiosApi.patch('/courses/' + params.id, params.course);
+  const formData = new FormData();
+
+  const keys = Object.keys(params.course) as (keyof CourseApi)[];
+  keys.forEach((key) => {
+    const value = params.course[key];
+
+    if (value !== null) {
+      formData.append(key, value);
+    }
+  });
+
+  await axiosApi.patch('/courses/' + params.id, formData);
 });
 
 export const deleteCourse = createAsyncThunk<void, string>('courses/deleteCourse', async (id) => {

@@ -74,6 +74,14 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/edit-course/:id"
+            element={
+              <ProtectedRoute isAllowed={user && user.role === 'admin'}>
+                <FormForCourses />
+              </ProtectedRoute>
+            }
+          />
           {/*<Route path="/albums/:id" element={<Albums />} />*/}
           {/*<Route path="/add-album" element={<FormForAlbums />} />*/}
           {/*<Route path="/tracks/:id" element={<Tracks />} />*/}
