@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '../../axiosApi';
-import { Course, CourseApi, FavoriteCourse } from '../../../types';
-import { selectFetchAllFavoriteCoursesLoading } from './favoriteCoursesSlice';
+import { FavoriteCourse } from '../../../types';
 
 export const fetchFavoriteCourses = createAsyncThunk<FavoriteCourse[]>('favoriteCourses/fetchAll', async () => {
   const favoriteCoursesResponse = await axiosApi.get<FavoriteCourse[]>('/favorite_courses');
@@ -17,17 +16,6 @@ export const fetchOneFavoriteCourse = createAsyncThunk<FavoriteCourse, string>(
 );
 
 export const addFavoriteCourse = createAsyncThunk<void, string>('favoriteCourses/addFavoriteCourse', async (id) => {
-  // const formData = new FormData();
-  //
-  // const keys = Object.keys(favoriteCourse) as (keyof CourseApi)[];
-  // keys.forEach((key) => {
-  //   const value = favoriteCourse[key];
-  //
-  //   if (value !== null) {
-  //     formData.append(key, value);
-  //   }
-  // });
-
   await axiosApi.post('/favorite_courses', { course: id });
 });
 

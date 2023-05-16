@@ -5,7 +5,7 @@ import FileInput from '../../components/UI/FileInput/FileInput';
 import { CourseApi } from '../../../types';
 import { useNavigate, useParams } from 'react-router-dom';
 import { selectAddCourseLoading, selectCourse } from './coursesSlice';
-import { addCourse, CourseMutation, editCourse, fetchCourses, fetchOneCourse } from './coursesThunks';
+import { addCourse, editCourse, fetchCourses, fetchOneCourse } from './coursesThunks';
 
 const FormForCourses = () => {
   const params = useParams();

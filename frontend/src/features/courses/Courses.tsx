@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { apiUrl } from '../../constants';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Button, Card, CardActions, CardContent, CardMedia, Chip, Stack, Typography } from '@mui/material';
 import { selectUser } from '../users/usersSlise';
 import { selectCourses, selectFetchAllCoursesLoading } from './coursesSlice';
@@ -40,11 +40,6 @@ const Courses = () => {
     await dispatch(deleteFavoriteCourse(id));
     await dispatch(fetchFavoriteCourses());
   };
-
-  // const publish = async (id: string) => {
-  //   await dispatch(publishArtist(id));
-  //   await dispatch(fetchArtists());
-  // };
 
   let info = null;
 
