@@ -8,6 +8,7 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist
 import { usersReducer } from '../features/users/usersSlise';
 import { tracksHistoryReducer } from '../features/tracksHistory/tracksHistorySlice';
 import { coursesReducer } from '../features/courses/coursesSlice';
+import { favoriteCoursesReducer } from '../features/favoriteCourses/favoriteCoursesSlice';
 
 const usersPersistConfig = {
   key: 'dance_kg:users',
@@ -17,6 +18,7 @@ const usersPersistConfig = {
 
 const rootReducer = combineReducers({
   courses: coursesReducer,
+  favoriteCourses: favoriteCoursesReducer,
   artists: artistsReducer,
   albums: albumsReducer,
   tracks: tracksReducer,

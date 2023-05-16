@@ -1,3 +1,5 @@
+import Track from "./models/Track";
+
 export interface Artist {
   id: string;
   name: string;
@@ -18,6 +20,11 @@ export interface Course {
 }
 
 export type CourseWithoutId = Omit<Course, "id">;
+
+export interface FavoriteCourseMutation {
+  user: ObjectId;
+  course: string;
+}
 
 export interface AlbumMutation {
   artist: string;

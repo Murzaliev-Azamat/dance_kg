@@ -3,7 +3,7 @@ import { Course } from '../../../types';
 import { RootState } from '../../app/store';
 import { addCourse, fetchCourses, fetchOneCourse } from './coursesThunks';
 
-interface ArtistsState {
+interface CoursesState {
   courses: Course[] | [];
   course: Course | null;
   fetchAllCoursesLoading: boolean;
@@ -11,7 +11,7 @@ interface ArtistsState {
   addCourseLoading: boolean;
 }
 
-const initialState: ArtistsState = {
+const initialState: CoursesState = {
   courses: [],
   course: null,
   fetchAllCoursesLoading: false,

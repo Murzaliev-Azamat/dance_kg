@@ -31,6 +31,12 @@ export interface CourseApi {
   image: File | null;
 }
 
+export interface FavoriteCourse {
+  _id: string;
+  user: string;
+  course: Course;
+}
+
 export interface Album {
   _id: string;
   artist: {

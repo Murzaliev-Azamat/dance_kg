@@ -135,6 +135,12 @@ const run = async () => {
       token: crypto.randomUUID(),
     },
     {
+      username: "user2",
+      password: "password",
+      displayName: "Jane",
+      token: crypto.randomUUID(),
+    },
+    {
       username: "admin",
       password: "password",
       displayName: "Adilet",

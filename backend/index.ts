@@ -8,6 +8,7 @@ import usersRouter from "./routers/users";
 import tracksHistoryRouter from "./routers/tracksHistory";
 import config from "./config";
 import coursesRouter from "./routers/courses";
+import favoriteCourseRouter from "./routers/favoriteCourse";
 
 const app = express();
 const port = 8000;
@@ -21,6 +22,7 @@ app.use("/albums", albumsRouter);
 app.use("/tracks", tracksRouter);
 app.use("/users", usersRouter);
 app.use("/track_history", tracksHistoryRouter);
+app.use("/favorite_courses", favoriteCourseRouter);
 
 const run = async () => {
   mongoose.set("strictQuery", false);
