@@ -21,31 +21,26 @@ const Chat = () => {
       const decodedMessage = JSON.parse(event.data) as IncomingMessage;
 
       if (decodedMessage.type === 'MESSAGES') {
-        console.log(decodedMessage.payload);
         const newMessages = decodedMessage.payload as Message[];
         setMessages(newMessages);
       }
 
       if (decodedMessage.type === 'ONLINE_USERS') {
-        console.log(decodedMessage.payload);
         const newUsers = decodedMessage.payload as User[];
         setUsers(newUsers);
       }
 
       if (decodedMessage.type === 'NEW_MESSAGE') {
-        console.log(decodedMessage.payload);
         const newMessage = decodedMessage.payload as Message;
         setMessages((prev) => [...prev, newMessage]);
       }
 
       if (decodedMessage.type === 'NEW_USER') {
-        console.log(decodedMessage.payload);
         const newUser = decodedMessage.payload as User;
         setUsers((prev) => [...prev, newUser]);
       }
 
       if (decodedMessage.type === 'LOGOUT') {
-        console.log(decodedMessage.payload);
         const LogoutUser = decodedMessage.payload as User;
         setUsers((prev) => prev.filter((user) => user?._id !== LogoutUser?._id));
       }

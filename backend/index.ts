@@ -71,7 +71,6 @@ router.ws("/chat", async (ws, req) => {
       }
       case "SEND_MESSAGE": {
         if (user === null) break;
-        console.log(decodedMessage.payload);
         const message = new Message({
           text: decodedMessage.payload,
           user: user._id,
