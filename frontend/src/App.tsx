@@ -9,6 +9,7 @@ import { selectUser } from './features/users/usersSlise';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Courses from './features/courses/Courses';
 import FormForCourses from './features/courses/FormForCourses';
+import Chat from './features/chat/Chat';
 
 function App() {
   const user = useAppSelector(selectUser);
@@ -32,6 +33,14 @@ function App() {
             element={
               <ProtectedRoute isAllowed={user && user.role === 'admin'}>
                 <FormForCourses />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/chat"
+            element={
+              <ProtectedRoute isAllowed={user !== null}>
+                <Chat />
               </ProtectedRoute>
             }
           />

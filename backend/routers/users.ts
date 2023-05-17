@@ -44,6 +44,8 @@ usersRouter.post("/sessions", async (req, res) => {
     return res.status(400).send({ error: "Username or password incorrect" });
   }
 
+  user.active = true;
+
   user.generateToken();
   await user.save();
 
@@ -110,6 +112,8 @@ usersRouter.delete("/sessions", async (req, res, next) => {
     if (!user) {
       return res.send(success);
     }
+
+    user.active = false;
 
     user.generateToken();
     await user.save();

@@ -50,6 +50,11 @@ const UserSchema = new Schema<IUser, UserModel, IUserMethods>({
     type: String,
     required: true,
   },
+  active: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
   googleId: String,
   image: String,
 });

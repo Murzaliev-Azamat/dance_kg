@@ -183,6 +183,13 @@ const Courses = () => {
 
   return (
     <>
+      {user && (
+        <div style={{ textAlign: 'right' }}>
+          <Button component={NavLink} to={'/chat'} style={{ marginRight: '20px' }} variant="contained">
+            Chat with admin
+          </Button>
+        </div>
+      )}
       {favoriteCourses.length !== 0 && <h2 style={{ marginLeft: '20px' }}>My favorite courses</h2>}
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>{infoFavorite}</div>
       <h2 style={{ marginLeft: '20px' }}>All courses</h2>

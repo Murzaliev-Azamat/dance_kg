@@ -1,15 +1,15 @@
-export interface Artist {
+export interface Message {
   _id: string;
-  name: string;
-  image: string;
-  info: string;
-  isPublished: boolean;
+  user: {
+    _id: string;
+    displayName: string;
+  };
+  text: string;
 }
 
-export interface ArtistApi {
-  name: string;
-  image: File | null;
-  info: string;
+export interface IncomingMessage {
+  type: string;
+  payload: Message[] | Message | User[] | User;
 }
 
 export interface Course {
@@ -35,80 +35,6 @@ export interface FavoriteCourse {
   _id: string;
   user: string;
   course: Course;
-}
-
-export interface Album {
-  _id: string;
-  artist: {
-    _id: string;
-    name: string;
-    image: string;
-    info: string;
-  };
-  name: string;
-  year: string;
-  image: string;
-  isPublished: boolean;
-}
-
-export interface AlbumApi {
-  artist: string;
-  name: string;
-  year: string;
-  image: File | null;
-}
-
-export interface Track {
-  _id: string;
-  album: {
-    _id: string;
-    artist: {
-      _id: string;
-      name: string;
-      image: string;
-      info: string;
-    };
-    name: string;
-    year: string;
-    image: string;
-  };
-  name: string;
-  time: string;
-  trackNumber: number;
-  linkToYoutube?: string;
-  isPublished: boolean;
-}
-
-export interface TrackApi {
-  album: string;
-  name: string;
-  time: string;
-  trackNumber: string;
-  linkToYoutube?: string;
-}
-
-export interface TrackHistory {
-  _id: string;
-  track: {
-    _id: string;
-    album: {
-      _id: string;
-      artist: {
-        _id: string;
-        name: string;
-        info: string;
-        image: string;
-      };
-      image: string;
-      name: string;
-      year: number;
-    };
-    name: string;
-    time: string;
-    trackNumber: number;
-  };
-  user: string;
-  datetime: string;
 }
 
 export interface RegisterMutation {
