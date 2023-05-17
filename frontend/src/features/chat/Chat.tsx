@@ -96,7 +96,7 @@ const Chat = () => {
       </div>
       {messages.map((message) => (
         <div key={message._id} style={{ paddingLeft: '5px', marginBottom: '5px' }}>
-          <b style={{ color: '#1976d2' }}>{message.user.displayName}</b>
+          <b style={{ color: '#1976d2' }}>{message.user?.displayName}</b>
           <span> said: </span>
           <i>{message.text}</i>
         </div>

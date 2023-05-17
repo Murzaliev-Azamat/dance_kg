@@ -53,7 +53,7 @@ const UserSchema = new Schema<IUser, UserModel, IUserMethods>({
   active: {
     type: Boolean,
     required: true,
-    default: true,
+    default: false,
   },
   googleId: String,
   image: String,

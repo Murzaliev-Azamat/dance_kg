@@ -12,6 +12,7 @@ const run = async () => {
   try {
     await db.dropCollection("courses");
     await db.dropCollection("users");
+    await db.dropCollection("messages");
   } catch (e) {
     console.log("Collections were not present, skipping drop...");
   }
